@@ -1,0 +1,292 @@
+{
+  "revision" : 84,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "123e4567-e89b-12d3-a456-426655440052",
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "simple-integration",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "once per second-id",
+      "description" : "once per second",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ {
+          "name" : "",
+          "uuid" : "ff921805-7fbd-4f73-a748-03d74a803e26",
+          "value" : ""
+        } ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "1000",
+        "repeatCount" : "1",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=1000&repeatCount=1&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "add exchangeId to body-id",
+      "description" : "add exchangeId to body",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "test body from simple: ${exchangeId} b: ${header.breadcrumbId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=test body from simple: ${exchangeId} b: ${header.breadcrumbId}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "messagingEndpoint",
+      "nodeId" : "to route-2-id",
+      "description" : "to route-2",
+      "properties" : {
+        "_type" : "messagingEndpoint",
+        "active" : true,
+        "camelGroup" : "core",
+        "name" : "messagingEndpoint",
+        "toDynamicEndpoint" : false,
+        "uri" : "direct://route-2",
+        "url" : ""
+      },
+      "_type" : "messagingEndpoint",
+      "kameletPropertiesUrl" : "?uri=direct://route-2"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "direct",
+      "nodeId" : "direct-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "direct",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "core",
+        "endpointName" : "route-2",
+        "name" : "direct",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "direct",
+      "kameletPropertiesUrl" : "?endpointName=route-2"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "setBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "unit1;unit2;unit3",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=unit1;unit2;unit3&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    }, {
+      "name" : "splitter",
+      "nodeId" : "splitter-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "splitter",
+        "active" : true,
+        "addNamespaces" : false,
+        "aggregationStrategy" : "",
+        "camelGroup" : "routing",
+        "expression" : "${body}",
+        "language" : "Simple",
+        "name" : "splitter",
+        "namespaces" : [ ],
+        "parallelProcessing" : false,
+        "shareUnitOfWork" : false,
+        "stopOnException" : false,
+        "streaming" : false,
+        "suppressExceptions" : false,
+        "timeout" : "0",
+        "token" : ";",
+        "tokenize" : true,
+        "url" : "",
+        "useAggregationStrategy" : false
+      },
+      "_type" : "splitter",
+      "branches" : [ {
+        "type" : "split",
+        "label" : "split",
+        "route" : [ {
+          "name" : "setBody",
+          "nodeId" : "setBody-01-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "setBody",
+            "active" : true,
+            "addNamespaces" : false,
+            "camelGroup" : "core",
+            "expression" : "exchangeId: ${exchangeId}",
+            "language" : "Simple",
+            "name" : "setBody",
+            "namespaces" : [ ],
+            "suppressExceptions" : false,
+            "url" : ""
+          },
+          "_type" : "setBody",
+          "kameletPropertiesUrl" : "?addNamespaces=false&expression=exchangeId: ${exchangeId}&language=Simple&suppressExceptions=false"
+        }, {
+          "name" : "log",
+          "nodeId" : "log-02-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "log",
+            "message" : "headers: ${headers}; body: ${body} b: ${header.breadcrumbId}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body} b: ${header.breadcrumbId}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      }, {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "log",
+          "nodeId" : "log-03-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "log",
+            "message" : "end",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=end&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=${body}&language=Simple&parallelProcessing=false&shareUnitOfWork=false&stopOnException=false&streaming=false&suppressExceptions=false&timeout=0&token=;&tokenize=true&useAggregationStrategy=false"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "123e4567-e89b-12d3-a456-426655440050",
+  "name" : "simple-integration",
+  "description" : "Simple integration with the timer-body-log example",
+  "createdAt" : "2024-01-09T15:39:18.309439368",
+  "updatedAt" : "2024-01-09T15:39:18.309439855",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

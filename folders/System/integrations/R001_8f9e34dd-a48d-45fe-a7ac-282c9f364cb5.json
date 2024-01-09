@@ -1,0 +1,129 @@
+{
+  "revision" : 9,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : null,
+  "currentProfileUuid" : "2a2471f4-02f5-4877-9dba-28e2b7155fe3",
+  "parameterGroupUuids" : [ "455f7c02-7606-4f82-acbb-6df635900c39" ],
+  "repoResourceUuids" : [ "54acde46-9123-4c87-9f07-6f6251dc265b", "fc583f9f-8da1-46ae-ad4a-1f366017819e", "e9542fbe-7fa7-4da9-8834-f2225a873cd7", "7cb8c772-c2b4-41ff-86b5-a55b4da124ba" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "clearBody",
+      "nodeId" : "clearBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "clearBody",
+        "camelGroup" : "core",
+        "name" : "clearBody",
+        "url" : ""
+      },
+      "_type" : "clearBody",
+      "kameletPropertiesUrl" : ""
+    }, {
+      "name" : "setHeaders",
+      "nodeId" : "setHeaders-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setHeaders",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "headerList" : [ {
+          "headerName" : "Authentication",
+          "headerValue" : "a",
+          "language" : "Simple",
+          "uuid" : "f1060c8b-81d4-4816-a1ff-e72eb8445643"
+        } ],
+        "name" : "setHeaders",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setHeaders",
+      "kameletPropertiesUrl" : "?addNamespaces=false&suppressExceptions=false"
+    }, {
+      "name" : "http",
+      "nodeId" : "http-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "http",
+        "active" : true,
+        "advancedParameters" : [ {
+          "name" : "skip",
+          "uuid" : "69f9a37a-658c-400a-98e8-019ba60dac43",
+          "value" : ""
+        } ],
+        "bridgeEndpoint" : false,
+        "camelGroup" : "component",
+        "connectTimeout" : "20000",
+        "connectionRequestTimeout" : "20000",
+        "disableStreamCache" : true,
+        "httpMethod" : "GET",
+        "httpUri" : "api.datagrate.co",
+        "name" : "http",
+        "scheme" : "http",
+        "socketTimeout" : "20000",
+        "throwExceptionOnFailure" : true,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "http",
+      "kameletPropertiesUrl" : "?bridgeEndpoint=false&connectTimeout=20000&connectionRequestTimeout=20000&disableStreamCache=true&httpMethod=GET&httpUri=api.datagrate.co&socketTimeout=20000&throwExceptionOnFailure=true"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "direct",
+      "nodeId" : "direct-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "direct",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "core",
+        "endpointName" : "direct",
+        "name" : "direct",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "direct",
+      "kameletPropertiesUrl" : "?endpointName=direct"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-3",
+    "enabled" : true,
+    "routeId" : 3,
+    "route" : [ {
+      "name" : "dslProcessor",
+      "nodeId" : "dslProcessor-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "dslProcessor",
+        "active" : true,
+        "camelGroup" : "core",
+        "dsl" : "from('direct://dsl-processor')",
+        "name" : "dslProcessor",
+        "url" : ""
+      },
+      "_type" : "dslProcessor",
+      "kameletPropertiesUrl" : "?dsl=from('direct://dsl-processor')"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "8f9e34dd-a48d-45fe-a7ac-282c9f364cb5",
+  "name" : "R001",
+  "description" : "JP authentication proxy service",
+  "createdAt" : "2024-01-09T15:39:18.359493945",
+  "updatedAt" : "2024-01-09T15:39:18.35949448",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

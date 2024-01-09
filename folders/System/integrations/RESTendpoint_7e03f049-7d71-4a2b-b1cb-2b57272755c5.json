@@ -1,0 +1,187 @@
+{
+  "revision" : 129,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "1db2461c-8bc9-4510-bdb9-a4538ee5b8f5",
+  "currentProfileUuid" : "64822982-eddb-4f2d-86f9-e6e417df4991",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "a621af3b-c7d1-4f19-8191-abecb5fcba81", "b7f24525-3af7-4cfa-a184-a2fe2001e927", "e232efe5-46df-490f-b54a-8cd353172e9e" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/countries",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "countries",
+        "produces" : "application/json",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/countries&method=get&operationName=countries&produces=application/json&requestmethod=GET"
+    }, {
+      "name" : "sql",
+      "nodeId" : "sql-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "sql",
+        "active" : true,
+        "advancedParameters" : [ {
+          "name" : "",
+          "uuid" : "981bd6cd-2e16-4714-a8d5-8b1b3abbd954",
+          "value" : ""
+        } ],
+        "batch" : false,
+        "camelGroup" : "component",
+        "dataSource" : "#FTP2RDS",
+        "name" : "sql",
+        "outputHeader" : "headerName",
+        "query" : "SELECT c.id as country_id, c.name as country_name, ci.id as city_id, \nci.name as city_name, c.created_date as country_created, ci.created_date as city_created  \nFROM countries as c INNER JOIN cities ci ON c.id = ci.country_id",
+        "setOutputHeader" : false,
+        "toDynamicEndpoint" : false,
+        "transacted" : false,
+        "url" : "",
+        "useMessageBodyForSql" : false
+      },
+      "_type" : "sql",
+      "kameletPropertiesUrl" : "?batch=false&dataSource=#FTP2RDS&outputHeader=headerName&query=SELECT c.id as country_id, c.name as country_name, ci.id as city_id, \nci.name as city_name, c.created_date as country_created, ci.created_date as city_created  \nFROM countries as c INNER JOIN cities ci ON c.id = ci.country_id&setOutputHeader=false&transacted=false&useMessageBodyForSql=false"
+    }, {
+      "name" : "splitter",
+      "nodeId" : "splitter-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "splitter",
+        "active" : true,
+        "addNamespaces" : false,
+        "aggregationStrategy" : "CountriesAggregationStrategy",
+        "camelGroup" : "routing",
+        "expression" : "${body}",
+        "language" : "Simple",
+        "name" : "splitter",
+        "namespaces" : [ ],
+        "parallelProcessing" : false,
+        "shareUnitOfWork" : false,
+        "stopOnException" : false,
+        "streaming" : false,
+        "suppressExceptions" : false,
+        "timeout" : "0",
+        "token" : ",",
+        "tokenize" : false,
+        "url" : "",
+        "useAggregationStrategy" : true
+      },
+      "_type" : "splitter",
+      "branches" : [ {
+        "type" : "split",
+        "label" : "split",
+        "route" : [ {
+          "name" : "process",
+          "nodeId" : "process-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "process",
+            "active" : true,
+            "camelGroup" : "transform",
+            "code" : "//get current iteration's body\nMap<String, Object> sqlRow = exchange.getIn().getBody(Map.class);\n\n// Create a country object\nMap<String, Object> country = new HashMap<>();\ncountry.put(\"name\", sqlRow.get(\"country_name\"));\ncountry.put(\"id\", sqlRow.get(\"country_id\"));\n\n//Create a city Object\nMap<String, Object> city = new HashMap<>();\ncity.put(\"name\", sqlRow.get(\"city_name\"));\ncity.put(\"id\", sqlRow.get(\"city_id\"));\n\n//Add City to Country as List\nList<Map<String, Object>> cities = new ArrayList<>();\ncities.add(city);\ncountry.put(\"cities\", cities);\n\nexchange.getIn().setBody(country);",
+            "import" : "import java.util.Map;\nimport java.util.List;\nimport java.util.HashMap;\nimport java.util.ArrayList;",
+            "name" : "process",
+            "url" : ""
+          },
+          "_type" : "process",
+          "kameletPropertiesUrl" : "?code=//get current iteration's body\nMap<String, Object> sqlRow = exchange.getIn().getBody(Map.class);\n\n// Create a country object\nMap<String, Object> country = new HashMap<>();\ncountry.put(\"name\", sqlRow.get(\"country_name\"));\ncountry.put(\"id\", sqlRow.get(\"country_id\"));\n\n//Create a city Object\nMap<String, Object> city = new HashMap<>();\ncity.put(\"name\", sqlRow.get(\"city_name\"));\ncity.put(\"id\", sqlRow.get(\"city_id\"));\n\n//Add City to Country as List\nList<Map<String, Object>> cities = new ArrayList<>();\ncities.add(city);\ncountry.put(\"cities\", cities);\n\nexchange.getIn().setBody(country);&import=import java.util.Map;\nimport java.util.List;\nimport java.util.HashMap;\nimport java.util.ArrayList;"
+        }, {
+          "name" : "log",
+          "nodeId" : "log-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "log",
+            "message" : "${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      }, {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "process",
+          "nodeId" : "process-01-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "process",
+            "active" : true,
+            "camelGroup" : "transform",
+            "code" : " \n        Map<String, Map<String, Object>> aggregatedData = exchange.getIn().getBody(Map.class);\n        \n \n        List<Map<String, Object>> countries = new ArrayList<>();\n        for (Map.Entry<String, Map<String, Object>> entry : aggregatedData.entrySet()) {\n            Map<String, Object> countryData = entry.getValue();\n            Map<String, Object> country = new HashMap<>();\n            country.put(\"id\", entry.getKey());\n            country.put(\"name\", countryData.get(\"name\"));\n            country.put(\"cities\", countryData.get(\"cities\"));\n            countries.add(country);\n        }\n\n  exchange.getIn().setBody(countries);",
+            "import" : "import java.util.Map;\nimport java.util.List;\nimport java.util.HashMap;\nimport java.util.ArrayList;",
+            "name" : "process",
+            "url" : ""
+          },
+          "_type" : "process",
+          "kameletPropertiesUrl" : "?code= \n        Map<String, Map<String, Object>> aggregatedData = exchange.getIn().getBody(Map.class);\n        \n \n        List<Map<String, Object>> countries = new ArrayList<>();\n        for (Map.Entry<String, Map<String, Object>> entry : aggregatedData.entrySet()) {\n            Map<String, Object> countryData = entry.getValue();\n            Map<String, Object> country = new HashMap<>();\n            country.put(\"id\", entry.getKey());\n            country.put(\"name\", countryData.get(\"name\"));\n            country.put(\"cities\", countryData.get(\"cities\"));\n            countries.add(country);\n        }\n\n  exchange.getIn().setBody(countries);&import=import java.util.Map;\nimport java.util.List;\nimport java.util.HashMap;\nimport java.util.ArrayList;"
+        }, {
+          "name" : "marshal",
+          "nodeId" : "marshal-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "marshal",
+            "active" : true,
+            "camelGroup" : "transform",
+            "dataFormatExpression" : "",
+            "dataFormatGroovyDsl" : ".json()",
+            "name" : "marshal",
+            "url" : ""
+          },
+          "_type" : "marshal",
+          "kameletPropertiesUrl" : "?dataFormatGroovyDsl=.json()"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : "?addNamespaces=false&aggregationStrategy=CountriesAggregationStrategy&expression=${body}&language=Simple&parallelProcessing=false&shareUnitOfWork=false&stopOnException=false&streaming=false&suppressExceptions=false&timeout=0&token=,&tokenize=false&useAggregationStrategy=true"
+    } ]
+  } ],
+  "traits" : [ {
+    "name" : "ingress",
+    "configuration" : {
+      "enabled" : true,
+      "host" : "countries.dev.jetic.io"
+    }
+  } ],
+  "id" : "7e03f049-7d71-4a2b-b1cb-2b57272755c5",
+  "name" : "RESTendpoint",
+  "description" : "No.3",
+  "createdAt" : "2024-01-09T15:39:18.758840317",
+  "updatedAt" : "2024-01-09T15:39:18.758840769",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

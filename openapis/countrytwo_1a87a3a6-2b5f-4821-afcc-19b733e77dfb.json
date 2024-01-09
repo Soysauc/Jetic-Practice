@@ -1,0 +1,26 @@
+{
+  "version" : "countrytwo.dev.jetic.io",
+  "host" : "1.0",
+  "id" : "1a87a3a6-2b5f-4821-afcc-19b733e77dfb",
+  "name" : "countrytwo",
+  "description" : null,
+  "createdAt" : "2024-01-09T15:39:17.609060847",
+  "updatedAt" : "2024-01-09T15:39:17.609061314",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "endpoints" : [ {
+    "uuid" : "0672022f-1f80-46f1-a4bb-292d5e395bc0",
+    "name" : "Countrytwo",
+    "path" : "/countrytwo",
+    "pathVariables" : [ ],
+    "operations" : [ {
+      "uuid" : "1f65bae9-cf6a-47a4-ac65-58acb6c819b4",
+      "operationId" : "countrytwo",
+      "method" : "get",
+      "consumes" : "application/xml",
+      "produces" : "application/xml"
+    } ]
+  } ],
+  "imported" : false,
+  "specification" : "{\"openapi\":\"3.0.2\",\"info\":{\"title\":\"countrytwo\",\"version\":\"1.0\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/countrytwo\":{\"get\":{\"responses\":{\"200\":{\"content\":{\"application/xml\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"default response description\"}},\"operationId\":\"countrytwo\"}}},\"components\":{}}"
+}

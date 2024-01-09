@@ -1,0 +1,25 @@
+{
+  "type" : "ParameterGroup",
+  "parameters" : [ {
+    "parameterName" : "Mapping",
+    "profileValues" : [ {
+      "profileUuid" : "aad91f65-abf3-4c52-bd84-3272f898cd03",
+      "profileName" : "Default",
+      "parameterValue" : ""
+    } ]
+  }, {
+    "parameterName" : "DiscontinueOnNoFill",
+    "profileValues" : [ {
+      "profileUuid" : "aad91f65-abf3-4c52-bd84-3272f898cd03",
+      "profileName" : "Default",
+      "parameterValue" : ""
+    } ]
+  } ],
+  "id" : "455f7c02-7606-4f82-acbb-6df635900c39",
+  "name" : "medbank.settings",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:17.733209037",
+  "updatedAt" : "2024-01-09T15:39:17.733209518",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

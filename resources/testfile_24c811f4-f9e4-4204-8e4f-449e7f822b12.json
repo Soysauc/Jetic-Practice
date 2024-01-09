@@ -1,0 +1,16 @@
+{
+  "type" : "RESOURCE_FILE",
+  "properties" : {
+    "compression" : "false",
+    "content" : "Hello from text.txt",
+    "filename" : "text.txt",
+    "type" : "Content"
+  },
+  "id" : "24c811f4-f9e4-4204-8e4f-449e7f822b12",
+  "name" : "testfile",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:17.86363219",
+  "updatedAt" : "2024-01-09T15:39:17.863633",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

@@ -1,0 +1,19 @@
+{
+  "revision" : 1,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : null,
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ ],
+  "routeDefinitions" : [ ],
+  "traits" : [ ],
+  "id" : "a94d3ddf-4ef3-4764-9330-3d53c757d374",
+  "name" : "XML1",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.829023231",
+  "updatedAt" : "2024-01-09T15:39:18.829023624",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

@@ -1,0 +1,14 @@
+{
+  "type" : "MAPPING",
+  "properties" : {
+    "filename" : "atlasmap-mapping.adm",
+    "mappingId" : "9"
+  },
+  "id" : "b7adb559-34dd-4fbe-afab-6b5f23a5b663",
+  "name" : "presidentMapper",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:17.793134804",
+  "updatedAt" : "2024-01-09T15:39:17.793135466",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

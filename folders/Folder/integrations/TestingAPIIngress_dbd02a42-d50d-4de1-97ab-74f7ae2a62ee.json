@@ -1,0 +1,97 @@
+{
+  "revision" : 4,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "b75e43be-41b0-4678-bcf3-73ad5ec06aea",
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "index",
+        "produces" : "application/json",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/&method=get&operationName=index&produces=application/json&requestmethod=GET"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "setBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "exchangeId: ${exchangeId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=exchangeId: ${exchangeId}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  } ],
+  "traits" : [ {
+    "name" : "ingress",
+    "configuration" : {
+      "auto" : true,
+      "enabled" : true,
+      "host" : "testing.dev.jetic.io"
+    }
+  } ],
+  "id" : "dbd02a42-d50d-4de1-97ab-74f7ae2a62ee",
+  "name" : "TestingAPIIngress",
+  "description" : "TestingAPIIngress",
+  "createdAt" : "2024-01-09T15:39:18.736184945",
+  "updatedAt" : "2024-01-09T15:39:18.736185356",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

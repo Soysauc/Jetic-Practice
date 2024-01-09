@@ -1,0 +1,11 @@
+{
+  "type" : "MAPPING",
+  "properties" : { },
+  "id" : "7cb8c772-c2b4-41ff-86b5-a55b4da124ba",
+  "name" : "map2",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:17.937957339",
+  "updatedAt" : "2024-01-09T15:39:17.937958283",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

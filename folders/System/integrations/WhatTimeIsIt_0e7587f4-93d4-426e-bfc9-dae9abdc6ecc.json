@@ -1,0 +1,260 @@
+{
+  "revision" : 74,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : null,
+  "currentProfileUuid" : "64822982-eddb-4f2d-86f9-e6e417df4991",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "83adbc30-8f0f-4996-9580-e0f572f580ce" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "timer-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "5000",
+        "repeatCount" : "0",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=5000&repeatCount=0&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    }, {
+      "name" : "setProperties",
+      "nodeId" : "setProperties-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setProperties",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "name" : "setProperties",
+        "namespaces" : [ ],
+        "propertyList" : [ {
+          "language" : "Simple",
+          "propertyName" : "CurrentTime",
+          "propertyValue" : "${date:now:yyyy-MM-dd HH:mm:ss}",
+          "uuid" : "968a19b6-351f-456a-a853-49cf9ad6ba5e"
+        }, {
+          "language" : "Simple",
+          "propertyName" : "currentSeconds",
+          "propertyValue" : "${date:now:ss}",
+          "uuid" : "60dbca41-cd19-48f1-90f7-9d547c79de0c"
+        } ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setProperties",
+      "kameletPropertiesUrl" : "?CurrentTime=${date:now:yyyy-MM-dd HH:mm:ss}&currentSeconds=${date:now:ss}&addNamespaces=false&suppressExceptions=false"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "setBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "Current time: ${date:now:yyyy-MM-dd HH:mm:ss}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=Current time: ${date:now:yyyy-MM-dd HH:mm:ss}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "direct",
+      "nodeId" : "direct-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "direct",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "core",
+        "endpointName" : "direct",
+        "name" : "direct",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "direct",
+      "kameletPropertiesUrl" : "?endpointName=direct"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "direct",
+      "nodeId" : "direct-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "direct",
+        "active" : true,
+        "advancedParameters" : [ {
+          "name" : "",
+          "uuid" : "cb27cd54-8b17-47a7-91be-824380293b43",
+          "value" : ""
+        } ],
+        "camelGroup" : "core",
+        "endpointName" : "direct",
+        "name" : "direct",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "direct",
+      "kameletPropertiesUrl" : "?endpointName=direct"
+    }, {
+      "name" : "messageFilter",
+      "nodeId" : "oddSecondsFilter-id",
+      "description" : "oddSecondsFilter",
+      "properties" : {
+        "_type" : "messageFilter",
+        "active" : true,
+        "camelGroup" : "routing",
+        "name" : "messageFilter",
+        "url" : ""
+      },
+      "_type" : "messageFilter",
+      "branches" : [ {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "setBody",
+          "nodeId" : "setBody-01-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "setBody",
+            "active" : true,
+            "addNamespaces" : false,
+            "camelGroup" : "core",
+            "expression" : "exchangeId: ${exchangeId}",
+            "language" : "Simple",
+            "name" : "setBody",
+            "namespaces" : [ ],
+            "suppressExceptions" : false,
+            "url" : ""
+          },
+          "_type" : "setBody",
+          "kameletPropertiesUrl" : "?addNamespaces=false&expression=exchangeId: ${exchangeId}&language=Simple&suppressExceptions=false"
+        }, {
+          "name" : "log",
+          "nodeId" : "log-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ {
+              "name" : "",
+              "uuid" : "8a24b9fb-c6b0-4c79-835b-ed4313acb94d",
+              "value" : ""
+            } ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "Component",
+            "loggerName" : "log",
+            "message" : "headers: ${headers}; body: ${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=Component&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      }, {
+        "type" : "filter",
+        "label" : "filter",
+        "route" : [ {
+          "name" : "setBody",
+          "nodeId" : "setBody-02-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "setBody",
+            "active" : true,
+            "addNamespaces" : false,
+            "camelGroup" : "core",
+            "expression" : "${exchangeProperty.CurrentTime} ODD",
+            "language" : "Simple",
+            "name" : "setBody",
+            "namespaces" : [ ],
+            "suppressExceptions" : false,
+            "url" : ""
+          },
+          "_type" : "setBody",
+          "kameletPropertiesUrl" : "?addNamespaces=false&expression=${exchangeProperty.CurrentTime} ODD&language=Simple&suppressExceptions=false"
+        }, {
+          "name" : "log",
+          "nodeId" : "log-01-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "ThisIsTheName",
+            "message" : "headers: ${headers}; body: ${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=ThisIsTheName&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : {
+          "addNamespaces" : "false",
+          "condition" : "${exchangeProperty.currentSeconds} > 30",
+          "language" : "Simple",
+          "namespaces" : [ ],
+          "suppressExceptions" : "false"
+        }
+      } ],
+      "kameletPropertiesUrl" : ""
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "0e7587f4-93d4-426e-bfc9-dae9abdc6ecc",
+  "name" : "WhatTimeIsIt",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.747549219",
+  "updatedAt" : "2024-01-09T15:39:18.747549638",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

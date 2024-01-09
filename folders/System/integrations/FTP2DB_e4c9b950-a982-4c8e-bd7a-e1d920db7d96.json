@@ -1,0 +1,206 @@
+{
+  "revision" : 76,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : null,
+  "currentProfileUuid" : "64822982-eddb-4f2d-86f9-e6e417df4991",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "a621af3b-c7d1-4f19-8191-abecb5fcba81", "b7f24525-3af7-4cfa-a184-a2fe2001e927" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "ftp",
+      "nodeId" : "ftp-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "ftp",
+        "active" : true,
+        "advancedParameters" : [ {
+          "name" : "fileName",
+          "uuid" : "b753a479-54dc-49bd-98a5-24d0a4f070e8",
+          "value" : "responseMini.xml"
+        }, {
+          "name" : "delay",
+          "uuid" : "55afd5ac-a94b-48ce-bd3e-17f46ba0b00f",
+          "value" : "60000"
+        }, {
+          "name" : "passiveMode",
+          "uuid" : "a475ecc2-dbf6-4f49-a174-27e45db60a43",
+          "value" : "true"
+        } ],
+        "camelGroup" : "component",
+        "directoryName" : "input",
+        "host" : "ftp.dlptest.com",
+        "name" : "ftp",
+        "password" : "rNrKYTX9g7z3RgJRmxWuGHbeu",
+        "port" : "21",
+        "scheme" : "ftp",
+        "toDynamicEndpoint" : false,
+        "url" : "",
+        "username" : "dlpuser"
+      },
+      "_type" : "ftp",
+      "kameletPropertiesUrl" : "?directoryName=input&host=ftp.dlptest.com&password=rNrKYTX9g7z3RgJRmxWuGHbeu&port=21&username=dlpuser"
+    }, {
+      "name" : "unmarshal",
+      "nodeId" : "unmarshal-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "unmarshal",
+        "active" : true,
+        "camelGroup" : "transform",
+        "dataFormatExpression" : "",
+        "dataFormatGroovyDsl" : ".jacksonXml()",
+        "name" : "unmarshal",
+        "url" : ""
+      },
+      "_type" : "unmarshal",
+      "kameletPropertiesUrl" : "?dataFormatGroovyDsl=.jacksonXml()"
+    }, {
+      "name" : "splitter",
+      "nodeId" : "splitter-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "splitter",
+        "active" : true,
+        "addNamespaces" : true,
+        "aggregationStrategy" : "",
+        "camelGroup" : "routing",
+        "expression" : "//atom:entry",
+        "language" : "XPath",
+        "name" : "splitter",
+        "namespaces" : [ {
+          "prefix" : "d",
+          "uri" : "http://schemas.microsoft.com/ado/2007/08/dataservices",
+          "uuid" : "9738a8ce-bbe3-4a4e-9175-c1ece916fd4c"
+        }, {
+          "prefix" : "atom",
+          "uri" : "http://www.w3.org/2005/Atom",
+          "uuid" : "37f6d297-31ef-46b6-9b5d-7ea2b2d43671"
+        }, {
+          "prefix" : "m",
+          "uri" : "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata",
+          "uuid" : "e6e6c9ef-4ffb-40f1-959b-c1a7a0dbf002"
+        } ],
+        "parallelProcessing" : false,
+        "shareUnitOfWork" : false,
+        "stopOnException" : false,
+        "streaming" : false,
+        "suppressExceptions" : false,
+        "timeout" : "0",
+        "token" : ",",
+        "tokenize" : false,
+        "url" : "",
+        "useAggregationStrategy" : false
+      },
+      "_type" : "splitter",
+      "branches" : [ {
+        "type" : "split",
+        "label" : "split",
+        "route" : [ {
+          "name" : "sql",
+          "nodeId" : "sql-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "sql",
+            "active" : true,
+            "advancedParameters" : [ {
+              "name" : "",
+              "uuid" : "09fd2160-acff-42bb-81cc-5ddeeafbd589",
+              "value" : ""
+            } ],
+            "batch" : false,
+            "camelGroup" : "component",
+            "dataSource" : "#dataSource",
+            "name" : "sql",
+            "outputHeader" : "headerName",
+            "query" : "select * from table where id=:#${exchangeProperty.myId} order by name",
+            "setOutputHeader" : false,
+            "toDynamicEndpoint" : false,
+            "transacted" : false,
+            "url" : "",
+            "useMessageBodyForSql" : true
+          },
+          "_type" : "sql",
+          "kameletPropertiesUrl" : "?batch=false&dataSource=#dataSource&outputHeader=headerName&query=select * from table where id=:#${exchangeProperty.myId} order by name&setOutputHeader=false&transacted=false&useMessageBodyForSql=true"
+        }, {
+          "name" : "seda",
+          "nodeId" : "seda-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "seda",
+            "active" : true,
+            "advancedParameters" : [ {
+              "name" : "",
+              "uuid" : "3a27ca76-ef3b-4bcb-a4fb-da7041e353e3",
+              "value" : ""
+            } ],
+            "blockWhenFull" : false,
+            "camelGroup" : "core",
+            "concurrentConsumers" : "1",
+            "endpointName" : "seda",
+            "limitConcurrentConsumers" : true,
+            "multipleConsumers" : false,
+            "name" : "seda",
+            "pollTimeout" : "1000",
+            "size" : "1000",
+            "specifyMaximumCapacitySize" : false,
+            "timeout" : "30000",
+            "toDynamicEndpoint" : false,
+            "url" : "",
+            "waitForTaskToComplete" : "IfReplyExpected"
+          },
+          "_type" : "seda",
+          "kameletPropertiesUrl" : "?blockWhenFull=false&concurrentConsumers=1&endpointName=seda&limitConcurrentConsumers=true&multipleConsumers=false&pollTimeout=1000&size=1000&specifyMaximumCapacitySize=false&timeout=30000&waitForTaskToComplete=IfReplyExpected"
+        } ],
+        "properties" : { }
+      }, {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "log",
+          "nodeId" : "log-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "log",
+            "message" : " body: ${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : false,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message= body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : "?addNamespaces=true&expression=//atom:entry&language=XPath&parallelProcessing=false&shareUnitOfWork=false&stopOnException=false&streaming=false&suppressExceptions=false&timeout=0&token=,&tokenize=false&useAggregationStrategy=false"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "e4c9b950-a982-4c8e-bd7a-e1d920db7d96",
+  "name" : "FTP2DB",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.7709628",
+  "updatedAt" : "2024-01-09T15:39:18.770963295",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

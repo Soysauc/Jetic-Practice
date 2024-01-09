@@ -1,0 +1,152 @@
+{
+  "revision" : 25,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "9e4830fb-4ee3-44a0-ac77-53724b2cd907",
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "a26f94c9-0e20-4403-b999-49d8c6a86b9d" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "timer-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "1000",
+        "repeatCount" : "0",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=1000&repeatCount=0&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "Hello Chronicle 123",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=Hello Chronicle 123&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "Get",
+        "produces" : "application/json",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/&method=get&operationName=Get&produces=application/json&requestmethod=GET"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "setBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "exchangeId: ${exchangeId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=exchangeId: ${exchangeId}&language=Simple&suppressExceptions=false"
+    } ]
+  } ],
+  "traits" : [ {
+    "name" : "ingress",
+    "configuration" : {
+      "enabled" : true,
+      "host" : "eibartesting.dev.jetic.io"
+    }
+  } ],
+  "id" : "9a2dcc83-b638-4a17-9bdb-04548941ca52",
+  "name" : "test",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.650852176",
+  "updatedAt" : "2024-01-09T15:39:18.650852716",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

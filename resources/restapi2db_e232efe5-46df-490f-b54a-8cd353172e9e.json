@@ -1,0 +1,14 @@
+{
+  "type" : "SOURCE_DEFINITIONS",
+  "properties" : {
+    "content" : "import org.apache.camel.AggregationStrategy;\nimport org.apache.camel.BindToRegistry;\nimport org.apache.camel.Exchange;\nimport org.apache.camel.builder.RouteBuilder;\nimport java.util.Map;\nimport java.util.List;\nimport java.util.HashMap;\nimport java.util.ArrayList;\n\n// simply combines Exchange String body values using '; ' as a delimiter\npublic class CountriesAggregationStrategy extends RouteBuilder implements AggregationStrategy {\n\n    @BindToRegistry(\"CountriesAggregationStrategy\")\n    public CountriesAggregationStrategy getCountriesAggregationStrategy() {\n        return this;\n    }\n\n      @Override\n    public void configure() throws Exception {\n    }\n\n    @Override\n    public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {\n    \t//Get Current Record\n\t\tMap<String, Object> newCountry = newExchange.getIn().getBody(Map.class);\n\t\t\t\n\t\t//Add very first Country\n        if (oldExchange == null) {\n\t\t\tMap<Integer, Map<String, Object>> newBody = new HashMap();\n\t\t\tnewBody.put((Integer) newCountry.get(\"id\"), newCountry);\n\t\t\tnewExchange.getIn().setBody(newBody);\n            return newExchange;\n        }\n\n        //Get Current Aggregation Result\n        Map<Integer, Map> currentResult = oldExchange.getIn().getBody(Map.class);\n\t\tMap<String, Object> oldCountry = null;\n\n\t\t//Check if Country Has been Added\n\t\tInteger newCountryId = (Integer) newCountry.get(\"id\");\n\t\tif (currentResult.containsKey(newCountryId)) {\n\t\t\t\toldCountry = currentResult.get(newCountryId);\n\t\t}\n\t\n\t\tif (oldCountry != null) {\n\t\t\t//Update existing Country\n\t\t\tList<Map<String, Object>> oldCities = (List<Map<String, Object>>) oldCountry.get(\"cities\");\n\t\t\toldCities.addAll((List<Map<String, Object>>) newCountry.get(\"cities\"));\n\t\t\toldCountry.put(\"cities\", oldCities);\n\t\t\tcurrentResult.put(newCountryId, oldCountry);\n\t\t} else {\n\t\t\t//Add new Country\n\t\t\tcurrentResult.put(newCountryId, newCountry);\n\t\t}\n\t\t\t\t\n\t\t//Update Exchange Result\t\t\n        oldExchange.getIn().setBody(currentResult);\n        return oldExchange;\n    }\n}",
+    "filename" : "CountriesAggregationStrategy.java"
+  },
+  "id" : "e232efe5-46df-490f-b54a-8cd353172e9e",
+  "name" : "restapi2db",
+  "description" : "task 3",
+  "createdAt" : "2024-01-09T15:39:18.008834416",
+  "updatedAt" : "2024-01-09T15:39:18.00883521",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

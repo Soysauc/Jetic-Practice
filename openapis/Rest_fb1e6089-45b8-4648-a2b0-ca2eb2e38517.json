@@ -1,0 +1,20 @@
+{
+  "version" : "restful.devbeta.jetic.io",
+  "host" : "1.1",
+  "id" : "fb1e6089-45b8-4648-a2b0-ca2eb2e38517",
+  "name" : "Rest",
+  "description" : null,
+  "createdAt" : "2024-01-09T15:39:17.5907307",
+  "updatedAt" : "2024-01-09T15:39:17.590731226",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "endpoints" : [ {
+    "uuid" : "eef2ec35-81dd-4ef1-b303-9c1e1eb08982",
+    "name" : "Test",
+    "path" : "/test",
+    "pathVariables" : [ ],
+    "operations" : [ ]
+  } ],
+  "imported" : false,
+  "specification" : "{\"openapi\":\"3.0.2\",\"info\":{\"title\":\"Rest\",\"version\":\"1.1\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/test\":{}},\"components\":{}}"
+}

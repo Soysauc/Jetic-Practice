@@ -1,0 +1,557 @@
+{
+  "revision" : 44,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : null,
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "501697a6-4a81-4416-96df-8d082a60a7f6" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "router-integration",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "once per second-id",
+      "description" : "once per second",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "1000",
+        "repeatCount" : "0",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=1000&repeatCount=0&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "add exchangeId to body-id",
+      "description" : "add exchangeId to body",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "${exchangeId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=${exchangeId}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "salesforce",
+      "nodeId" : "salesforce-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "salesforce",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "name" : "salesforce",
+        "notifyForFields" : "ALL",
+        "operationName" : "query",
+        "rawPayload" : false,
+        "replayId" : "-1",
+        "sObjectName" : "Contact",
+        "sObjectQuery" : "SELECT Id, Name FROM Contact",
+        "setsObjectName" : false,
+        "setsObjectQuery" : true,
+        "topicName" : "CamelTestTopic",
+        "updateTopic" : false,
+        "url" : ""
+      },
+      "_type" : "salesforce",
+      "kameletPropertiesUrl" : "?notifyForFields=ALL&operationName=query&rawPayload=false&replayId=-1&sObjectName=Contact&sObjectQuery=SELECT Id, Name FROM Contact&setsObjectName=false&setsObjectQuery=true&topicName=CamelTestTopic&updateTopic=false"
+    }, {
+      "name" : "snowflake",
+      "nodeId" : "snowflake-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "snowflake",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "dataSource" : "#snowflake",
+        "name" : "snowflake",
+        "query" : "SELECT * FROM jetic LIMIT 10",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "snowflake",
+      "kameletPropertiesUrl" : "?dataSource=#snowflake&query=SELECT * FROM jetic LIMIT 10"
+    }, {
+      "name" : "multicast",
+      "nodeId" : "multicast example-id",
+      "description" : "multicast example",
+      "properties" : {
+        "_type" : "multicast",
+        "active" : true,
+        "aggregationStrategy" : "new org.apache.camel.processor.aggregate.UseLatestAggregationStrategy()",
+        "camelGroup" : "routing",
+        "name" : "multicast",
+        "parallelProcessing" : false,
+        "stopOnAggregateException" : false,
+        "stopOnException" : false,
+        "timeout" : "0",
+        "uris" : [ {
+          "uri" : "seda://route-3"
+        } ],
+        "url" : "",
+        "useAggregationStrategy" : false
+      },
+      "_type" : "multicast",
+      "branches" : [ {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "direct",
+          "nodeId" : "to route-2-id",
+          "description" : "to route-2",
+          "properties" : {
+            "_type" : "direct",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "core",
+            "endpointName" : "route-2",
+            "name" : "direct",
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "direct",
+          "kameletPropertiesUrl" : "?endpointName=route-2"
+        }, {
+          "name" : "sap-netweaver",
+          "nodeId" : "sap-netweaver-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "sap-netweaver",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "flatternMap" : true,
+            "json" : true,
+            "jsonAsMap" : true,
+            "lazyStartProducer" : false,
+            "name" : "sap-netweaver",
+            "password" : "",
+            "toDynamicEndpoint" : false,
+            "url" : "",
+            "username" : ""
+          },
+          "_type" : "sap-netweaver",
+          "kameletPropertiesUrl" : "?flatternMap=true&json=true&jsonAsMap=true&lazyStartProducer=false"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : "?aggregationStrategy=new org.apache.camel.processor.aggregate.UseLatestAggregationStrategy()&parallelProcessing=false&stopOnAggregateException=false&stopOnException=false&timeout=0&useAggregationStrategy=false"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "direct",
+      "nodeId" : "from route-2-id",
+      "description" : "from route-2",
+      "properties" : {
+        "_type" : "direct",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "core",
+        "endpointName" : "route-2",
+        "name" : "direct",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "direct",
+      "kameletPropertiesUrl" : "?endpointName=route-2"
+    }, {
+      "name" : "messageRouter",
+      "nodeId" : "outer message router-id",
+      "description" : "outer message router",
+      "properties" : {
+        "_type" : "messageRouter",
+        "active" : true,
+        "camelGroup" : "routing",
+        "name" : "messageRouter",
+        "url" : ""
+      },
+      "_type" : "messageRouter",
+      "branches" : [ {
+        "type" : "when",
+        "label" : "when 0",
+        "route" : [ {
+          "name" : "setBody",
+          "nodeId" : "update body-id",
+          "description" : "update body",
+          "properties" : {
+            "_type" : "setBody",
+            "active" : true,
+            "addNamespaces" : false,
+            "camelGroup" : "core",
+            "expression" : "${body} ends with \"0\"",
+            "language" : "Simple",
+            "name" : "setBody",
+            "namespaces" : [ ],
+            "suppressExceptions" : false,
+            "url" : ""
+          },
+          "_type" : "setBody",
+          "kameletPropertiesUrl" : "?addNamespaces=false&expression=${body} ends with \"0\"&language=Simple&suppressExceptions=false"
+        }, {
+          "name" : "sql",
+          "nodeId" : "sql-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "sql",
+            "active" : true,
+            "advancedParameters" : [ {
+              "name" : "",
+              "uuid" : "02dab2f1-be9f-4ea2-bc79-5935e98ce3f6",
+              "value" : ""
+            } ],
+            "batch" : false,
+            "camelGroup" : "component",
+            "dataSource" : "#dataSource",
+            "name" : "sql",
+            "outputHeader" : "headerName",
+            "query" : "select * from table where id=:#${exchangeProperty.myId} order by name",
+            "setOutputHeader" : false,
+            "toDynamicEndpoint" : false,
+            "transacted" : false,
+            "url" : "",
+            "useMessageBodyForSql" : true
+          },
+          "_type" : "sql",
+          "kameletPropertiesUrl" : "?batch=false&dataSource=#dataSource&outputHeader=headerName&query=select * from table where id=:#${exchangeProperty.myId} order by name&setOutputHeader=false&transacted=false&useMessageBodyForSql=true"
+        } ],
+        "properties" : {
+          "addNamespaces" : "false",
+          "condition" : "${body} ends with \"0\"",
+          "language" : "Simple",
+          "namespaces" : [ ],
+          "suppressExceptions" : "false"
+        }
+      }, {
+        "type" : "when",
+        "label" : "when 2",
+        "route" : [ {
+          "name" : "setBody",
+          "nodeId" : "update body-01-id",
+          "description" : "update body",
+          "properties" : {
+            "_type" : "setBody",
+            "active" : true,
+            "addNamespaces" : false,
+            "camelGroup" : "core",
+            "expression" : "${body} ends with \"2\"",
+            "language" : "Simple",
+            "name" : "setBody",
+            "namespaces" : [ ],
+            "suppressExceptions" : false,
+            "url" : ""
+          },
+          "_type" : "setBody",
+          "kameletPropertiesUrl" : "?addNamespaces=false&expression=${body} ends with \"2\"&language=Simple&suppressExceptions=false"
+        } ],
+        "properties" : {
+          "addNamespaces" : "false",
+          "condition" : "body().endsWith('2')",
+          "language" : "GroovyDsl",
+          "namespaces" : [ ],
+          "suppressExceptions" : "false"
+        }
+      }, {
+        "type" : "otherwise",
+        "label" : "otherwise",
+        "route" : [ {
+          "name" : "messageRouter",
+          "nodeId" : "inner message router-id",
+          "description" : "inner message router",
+          "properties" : {
+            "_type" : "messageRouter",
+            "active" : true,
+            "camelGroup" : "routing",
+            "name" : "messageRouter",
+            "url" : ""
+          },
+          "_type" : "messageRouter",
+          "branches" : [ {
+            "type" : "when",
+            "label" : "when 4",
+            "route" : [ {
+              "name" : "setBody",
+              "nodeId" : "update body-02-id",
+              "description" : "update body",
+              "properties" : {
+                "_type" : "setBody",
+                "active" : true,
+                "addNamespaces" : false,
+                "camelGroup" : "core",
+                "expression" : "${body} ends with \"4\"",
+                "language" : "Simple",
+                "name" : "setBody",
+                "namespaces" : [ ],
+                "suppressExceptions" : false,
+                "url" : ""
+              },
+              "_type" : "setBody",
+              "kameletPropertiesUrl" : "?addNamespaces=false&expression=${body} ends with \"4\"&language=Simple&suppressExceptions=false"
+            } ],
+            "properties" : {
+              "addNamespaces" : "false",
+              "condition" : "${body} ends with \"4\"",
+              "language" : "Simple",
+              "namespaces" : [ ],
+              "suppressExceptions" : "false"
+            }
+          }, {
+            "type" : "otherwise",
+            "label" : "otherwise",
+            "route" : [ {
+              "name" : "throwException",
+              "nodeId" : "unsupported operation-id",
+              "description" : "unsupported operation",
+              "properties" : {
+                "_type" : "throwException",
+                "active" : true,
+                "camelGroup" : "exception",
+                "exception" : "new UnsupportedOperationException(\"body does not end with 0, 2, or 4\")",
+                "name" : "throwException",
+                "url" : ""
+              },
+              "_type" : "throwException",
+              "kameletPropertiesUrl" : "?exception=new UnsupportedOperationException(\"body does not end with 0, 2, or 4\")"
+            } ],
+            "properties" : { }
+          } ],
+          "kameletPropertiesUrl" : ""
+        } ],
+        "properties" : { }
+      }, {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "log",
+          "nodeId" : "EIP log route-2-id",
+          "description" : "EIP log route-2",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "INFO",
+            "logType" : "EIP",
+            "loggerName" : "log",
+            "message" : "body: ${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : true,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : false,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=body: ${body}&multiline=false&showAll=true&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : ""
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-3",
+    "enabled" : true,
+    "routeId" : 3,
+    "route" : [ {
+      "name" : "messagingEndpoint",
+      "nodeId" : "from route-3 asynchronously-id",
+      "description" : "from route-3 asynchronously",
+      "properties" : {
+        "_type" : "messagingEndpoint",
+        "active" : true,
+        "camelGroup" : "core",
+        "name" : "messagingEndpoint",
+        "toDynamicEndpoint" : false,
+        "uri" : "seda://route-3",
+        "url" : ""
+      },
+      "_type" : "messagingEndpoint",
+      "kameletPropertiesUrl" : "?uri=seda://route-3"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "add camelId to body-id",
+      "description" : "add camelId to body",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "${camelId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=${camelId}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "log",
+      "nodeId" : "EIP log route-3-id",
+      "description" : "EIP log route-3",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "1234",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : true,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=1234&multiline=false&showAll=true&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-4",
+    "enabled" : true,
+    "routeId" : 4,
+    "route" : [ {
+      "name" : "onException",
+      "nodeId" : "handle all exceptions-id",
+      "description" : "handle all exceptions",
+      "properties" : {
+        "_type" : "onException",
+        "active" : true,
+        "asyncDelayedRedelivery" : false,
+        "camelGroup" : "exception",
+        "exceptionBehavior" : "Handle the exceptions",
+        "exceptionList" : [ {
+          "exception" : "Exception"
+        } ],
+        "maximumRedeliveries" : "0",
+        "name" : "onException",
+        "redeliveryDelay" : "0",
+        "setRedeliveryDelay" : true,
+        "setRedeliveryTriesCount" : true,
+        "url" : "",
+        "useOriginalMessage" : true
+      },
+      "_type" : "onException",
+      "branches" : [ {
+        "type" : "route",
+        "label" : "route",
+        "route" : [ {
+          "name" : "log",
+          "nodeId" : "log caught exception-id",
+          "description" : "log caught exception",
+          "properties" : {
+            "_type" : "log",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "level" : "ERROR",
+            "logType" : "Component",
+            "loggerName" : "log",
+            "message" : "headers: ${headers}; body: ${body}",
+            "multiline" : false,
+            "name" : "log",
+            "showAll" : true,
+            "showBody" : true,
+            "showBodyType" : true,
+            "showCaughtException" : true,
+            "showExchangeId" : false,
+            "showHeaders" : false,
+            "showProperties" : false,
+            "showStackTrace" : false,
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "log",
+          "kameletPropertiesUrl" : "?level=ERROR&logType=Component&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=true&showBody=true&showBodyType=true&showCaughtException=true&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+        } ],
+        "properties" : { }
+      } ],
+      "kameletPropertiesUrl" : "?asyncDelayedRedelivery=false&exceptionBehavior=Handle the exceptions&maximumRedeliveries=0&redeliveryDelay=0&setRedeliveryDelay=true&setRedeliveryTriesCount=true&useOriginalMessage=true"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-5",
+    "enabled" : true,
+    "routeId" : 5,
+    "route" : [ {
+      "name" : "debezium",
+      "nodeId" : "debezium-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "debezium",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "componentName" : "name",
+        "databaseDbname" : "",
+        "databaseHostname" : "",
+        "databasePassword" : "",
+        "databasePort" : "5432",
+        "databaseServerName" : "",
+        "databaseUser" : "",
+        "mongodbHosts" : "",
+        "mongodbName" : "",
+        "mongodbPassword" : "",
+        "mongodbUser" : "",
+        "name" : "debezium",
+        "offsetStorageFileName" : "",
+        "pluginName" : "",
+        "schemaIncludeList" : "public",
+        "scheme" : "debezium-postgres",
+        "tableIncludeList" : "",
+        "url" : ""
+      },
+      "_type" : "debezium",
+      "kameletPropertiesUrl" : "?componentName=name&databasePort=5432&schemaIncludeList=public"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "123e4567-e89b-12d3-a456-426655440051",
+  "name" : "router-integration",
+  "description" : "Router integration with the message router example",
+  "createdAt" : "2024-01-09T15:39:18.268399311",
+  "updatedAt" : "2024-01-09T15:39:18.268399851",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

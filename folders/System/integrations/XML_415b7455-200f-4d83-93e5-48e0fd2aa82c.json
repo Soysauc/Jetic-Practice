@@ -1,0 +1,163 @@
+{
+  "revision" : 38,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "1a87a3a6-2b5f-4821-afcc-19b733e77dfb",
+  "currentProfileUuid" : "64822982-eddb-4f2d-86f9-e6e417df4991",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "a621af3b-c7d1-4f19-8191-abecb5fcba81" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/xml",
+        "endpoint" : "/countrytwo",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "countrytwo",
+        "produces" : "application/xml",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/xml&endpoint=/countrytwo&method=get&operationName=countrytwo&produces=application/xml&requestmethod=GET"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "setBody-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "exchangeId: ${exchangeId}",
+        "language" : "Simple",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression=exchangeId: ${exchangeId}&language=Simple&suppressExceptions=false"
+    }, {
+      "name" : "marshal",
+      "nodeId" : "marshal-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "marshal",
+        "active" : false,
+        "camelGroup" : "transform",
+        "dataFormatExpression" : "",
+        "dataFormatGroovyDsl" : "",
+        "name" : "marshal",
+        "url" : ""
+      },
+      "_type" : "marshal",
+      "kameletPropertiesUrl" : ""
+    }, {
+      "name" : "log",
+      "nodeId" : "log-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : false,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    }, {
+      "name" : "http",
+      "nodeId" : "http-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "http",
+        "active" : false,
+        "advancedParameters" : [ ],
+        "bridgeEndpoint" : false,
+        "camelGroup" : "component",
+        "connectTimeout" : "20000",
+        "connectionRequestTimeout" : "20000",
+        "disableStreamCache" : true,
+        "httpMethod" : "GET",
+        "httpUri" : "countries.dev.jetic.io/countries",
+        "name" : "http",
+        "scheme" : "http",
+        "socketTimeout" : "20000",
+        "throwExceptionOnFailure" : true,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "http",
+      "kameletPropertiesUrl" : "?bridgeEndpoint=false&connectTimeout=20000&connectionRequestTimeout=20000&disableStreamCache=true&httpMethod=GET&httpUri=countries.dev.jetic.io/countries&socketTimeout=20000&throwExceptionOnFailure=true"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : false,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  } ],
+  "traits" : [ {
+    "name" : "ingress",
+    "configuration" : {
+      "enabled" : true,
+      "host" : "countrytwo.dev.jetic.io"
+    }
+  } ],
+  "id" : "415b7455-200f-4d83-93e5-48e0fd2aa82c",
+  "name" : "XML",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.795634003",
+  "updatedAt" : "2024-01-09T15:39:18.795634424",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

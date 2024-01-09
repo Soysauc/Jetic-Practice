@@ -1,0 +1,269 @@
+{
+  "revision" : 24,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "123e4567-e89b-12d3-a456-426655440052",
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ "601c7e35-70ad-45ae-a76c-38436ff1b793", "ca248644-9d55-4218-9d3f-8d8cc1813041", "74eabc9c-0cf7-4fb0-a2ed-36af0d72d26c", "5b4e4d8f-3b60-477a-a1df-f3202f1c9eea" ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "5s-id",
+      "description" : "5s",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "5000",
+        "repeatCount" : "0",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=5000&repeatCount=0&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    }, {
+      "name" : "setBody",
+      "nodeId" : "Joe Biden JSON-id",
+      "description" : "Joe Biden JSON",
+      "properties" : {
+        "_type" : "setBody",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "expression" : "{     \"firstName\" : \"Joe\",     \"lastName\" : \"Biden\",     \"nickname\" : \"Sleepy Joe\",     \"age\": 78,     \"term\" : 1 }",
+        "language" : "Constant",
+        "name" : "setBody",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setBody",
+      "kameletPropertiesUrl" : "?addNamespaces=false&expression={     \"firstName\" : \"Joe\",     \"lastName\" : \"Biden\",     \"nickname\" : \"Sleepy Joe\",     \"age\": 78,     \"term\" : 1 }&language=Constant&suppressExceptions=false"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    }, {
+      "name" : "atlasmap",
+      "nodeId" : "atlasmap-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "atlasmap",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "allowContextMapAll" : false,
+        "camelGroup" : "component",
+        "contentCache" : false,
+        "lazyStartProducer" : false,
+        "name" : "atlasmap",
+        "resourceUri" : "atlasmap-mapping.adm",
+        "sourceMapName" : "",
+        "targetMapMode" : "MAP",
+        "targetMapName" : "",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "atlasmap",
+      "kameletPropertiesUrl" : "?allowContextMapAll=false&contentCache=false&lazyStartProducer=false&resourceUri=atlasmap-mapping.adm&targetMapMode=MAP"
+    }, {
+      "name" : "log",
+      "nodeId" : "log-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "log",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "level" : "INFO",
+        "logType" : "EIP",
+        "loggerName" : "log",
+        "message" : "headers: ${headers}; body: ${body}",
+        "multiline" : false,
+        "name" : "log",
+        "showAll" : false,
+        "showBody" : true,
+        "showBodyType" : true,
+        "showCaughtException" : false,
+        "showExchangeId" : false,
+        "showHeaders" : false,
+        "showProperties" : false,
+        "showStackTrace" : false,
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "log",
+      "kameletPropertiesUrl" : "?level=INFO&logType=EIP&loggerName=log&message=headers: ${headers}; body: ${body}&multiline=false&showAll=false&showBody=true&showBodyType=true&showCaughtException=false&showExchangeId=false&showHeaders=false&showProperties=false&showStackTrace=false"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/test",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "test123",
+        "produces" : "application/json",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/test&method=get&operationName=test123&produces=application/json&requestmethod=GET"
+    }, {
+      "name" : "sql",
+      "nodeId" : "sql-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "sql",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "batch" : false,
+        "camelGroup" : "component",
+        "dataSource" : "#dataSource",
+        "name" : "sql",
+        "outputHeader" : "headerName",
+        "query" : "select * from table where id=:#${exchangeProperty.myId} order by name",
+        "setOutputHeader" : false,
+        "toDynamicEndpoint" : false,
+        "transacted" : false,
+        "url" : "",
+        "useMessageBodyForSql" : true
+      },
+      "_type" : "sql",
+      "kameletPropertiesUrl" : "?batch=false&dataSource=#dataSource&outputHeader=headerName&query=select * from table where id=:#${exchangeProperty.myId} order by name&setOutputHeader=false&transacted=false&useMessageBodyForSql=true"
+    }, {
+      "name" : "atlasmap",
+      "nodeId" : "atlasmap-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "atlasmap",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "allowContextMapAll" : false,
+        "camelGroup" : "component",
+        "contentCache" : false,
+        "lazyStartProducer" : false,
+        "name" : "atlasmap",
+        "resourceUri" : "atlasmap-mapping.adm",
+        "sourceMapName" : "",
+        "targetMapMode" : "MAP",
+        "targetMapName" : "",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "atlasmap",
+      "kameletPropertiesUrl" : "?allowContextMapAll=false&contentCache=false&lazyStartProducer=false&resourceUri=atlasmap-mapping.adm&targetMapMode=MAP"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-3",
+    "enabled" : true,
+    "routeId" : 3,
+    "route" : [ {
+      "name" : "dslProcessor",
+      "nodeId" : "dslProcessor-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "dslProcessor",
+        "active" : true,
+        "camelGroup" : "core",
+        "dsl" : "from('direct://dsl-processor')",
+        "name" : "dslProcessor",
+        "url" : ""
+      },
+      "_type" : "dslProcessor",
+      "kameletPropertiesUrl" : "?dsl=from('direct://dsl-processor')"
+    }, {
+      "name" : "process",
+      "nodeId" : "process-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "process",
+        "active" : true,
+        "camelGroup" : "transform",
+        "code" : "/*\n * Provide own codes to consume or translate the message exchanges.\n * @param Exchange exchange\n * exchange.getIn().setHeader(\"date\", new Date())\n */",
+        "import" : "// import org.apache.camel.Message",
+        "name" : "process",
+        "url" : ""
+      },
+      "_type" : "process",
+      "kameletPropertiesUrl" : "?code=/*\n * Provide own codes to consume or translate the message exchanges.\n * @param Exchange exchange\n * exchange.getIn().setHeader(\"date\", new Date())\n */&import=// import org.apache.camel.Message"
+    }, {
+      "name" : "setHeaders",
+      "nodeId" : "setHeaders-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "setHeaders",
+        "active" : true,
+        "addNamespaces" : false,
+        "camelGroup" : "core",
+        "headerList" : [ {
+          "headerName" : "",
+          "headerValue" : "",
+          "language" : "Simple",
+          "uuid" : "5528e3eb-ed3c-4a56-a40d-d45ae3557ccf"
+        } ],
+        "name" : "setHeaders",
+        "namespaces" : [ ],
+        "suppressExceptions" : false,
+        "url" : ""
+      },
+      "_type" : "setHeaders",
+      "kameletPropertiesUrl" : "?addNamespaces=false&suppressExceptions=false"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "20b3f468-65bf-4f4d-9acf-1da4b92d15dd",
+  "name" : "cloud-mapper-example",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.294598196",
+  "updatedAt" : "2024-01-09T15:39:18.2945987",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

@@ -1,0 +1,291 @@
+{
+  "revision" : 14,
+  "compression" : false,
+  "dataAnalyzer" : true,
+  "replicas" : 1,
+  "openApiUuid" : "123e4567-e89b-12d3-a456-426655440052",
+  "currentProfileUuid" : "123e4567-e89b-12d3-a456-426655440031",
+  "parameterGroupUuids" : [ ],
+  "repoResourceUuids" : [ ],
+  "routeDefinitions" : [ {
+    "id" : null,
+    "camelRouteId" : "route-1",
+    "enabled" : true,
+    "routeId" : 1,
+    "route" : [ {
+      "name" : "getRequest",
+      "nodeId" : "restApi-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/",
+        "method" : "get",
+        "name" : "getRequest",
+        "operationName" : "default",
+        "produces" : "application/json",
+        "requestmethod" : "GET",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/&method=get&operationName=default&produces=application/json&requestmethod=GET"
+    }, {
+      "name" : "snowflake",
+      "nodeId" : "snowflake-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "snowflake",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "dataSource" : "#snowflake",
+        "name" : "snowflake",
+        "query" : "SELECT * FROM jetic LIMIT 10",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "snowflake",
+      "kameletPropertiesUrl" : "?dataSource=#snowflake&query=SELECT * FROM jetic LIMIT 10"
+    }, {
+      "name" : "atlasmap",
+      "nodeId" : "atlasmap-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "atlasmap",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "allowContextMapAll" : false,
+        "camelGroup" : "component",
+        "contentCache" : false,
+        "lazyStartProducer" : false,
+        "name" : "atlasmap",
+        "resourceUri" : "atlasmap-mapping.adm",
+        "sourceMapName" : "",
+        "targetMapMode" : "MAP",
+        "targetMapName" : "",
+        "toDynamicEndpoint" : false,
+        "url" : ""
+      },
+      "_type" : "atlasmap",
+      "kameletPropertiesUrl" : "?allowContextMapAll=false&contentCache=false&lazyStartProducer=false&resourceUri=atlasmap-mapping.adm&targetMapMode=MAP"
+    }, {
+      "name" : "messageRouter",
+      "nodeId" : "messageRouter-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "messageRouter",
+        "active" : true,
+        "camelGroup" : "routing",
+        "name" : "messageRouter",
+        "url" : ""
+      },
+      "_type" : "messageRouter",
+      "branches" : [ {
+        "type" : "when",
+        "label" : "when",
+        "route" : [ {
+          "name" : "snowflake",
+          "nodeId" : "snowflake-01-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "snowflake",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "dataSource" : "#snowflake",
+            "name" : "snowflake",
+            "query" : "SELECT * FROM jetic LIMIT 10",
+            "toDynamicEndpoint" : false,
+            "url" : ""
+          },
+          "_type" : "snowflake",
+          "kameletPropertiesUrl" : "?dataSource=#snowflake&query=SELECT * FROM jetic LIMIT 10"
+        } ],
+        "properties" : {
+          "addNamespaces" : "false",
+          "condition" : "${header.foo} == \"bar\"",
+          "language" : "Simple",
+          "namespaces" : [ ],
+          "suppressExceptions" : "false"
+        }
+      }, {
+        "type" : "when",
+        "label" : "when",
+        "route" : [ {
+          "name" : "salesforce",
+          "nodeId" : "salesforce-00-id",
+          "description" : "",
+          "properties" : {
+            "_type" : "salesforce",
+            "active" : true,
+            "advancedParameters" : [ ],
+            "camelGroup" : "component",
+            "name" : "salesforce",
+            "notifyForFields" : "ALL",
+            "operationName" : "query",
+            "rawPayload" : false,
+            "replayId" : "-1",
+            "sObjectName" : "Contact",
+            "sObjectQuery" : "SELECT Id, Name FROM Contact",
+            "setsObjectName" : false,
+            "setsObjectQuery" : true,
+            "topicName" : "CamelTestTopic",
+            "updateTopic" : false,
+            "url" : ""
+          },
+          "_type" : "salesforce",
+          "kameletPropertiesUrl" : "?notifyForFields=ALL&operationName=query&rawPayload=false&replayId=-1&sObjectName=Contact&sObjectQuery=SELECT Id, Name FROM Contact&setsObjectName=false&setsObjectQuery=true&topicName=CamelTestTopic&updateTopic=false"
+        } ],
+        "properties" : {
+          "addNamespaces" : "false",
+          "condition" : "${header.foo} == \"bar\"",
+          "language" : "Simple",
+          "namespaces" : [ ],
+          "suppressExceptions" : "false"
+        }
+      } ],
+      "kameletPropertiesUrl" : ""
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-2",
+    "enabled" : true,
+    "routeId" : 2,
+    "route" : [ {
+      "name" : "postRequest",
+      "nodeId" : "restApi-01-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "restApi",
+        "active" : true,
+        "camelGroup" : "rest",
+        "consumes" : "application/json",
+        "endpoint" : "/update",
+        "method" : "post",
+        "name" : "postRequest",
+        "operationName" : "account",
+        "produces" : "application/json",
+        "requestmethod" : "POST",
+        "url" : ""
+      },
+      "_type" : "restApi",
+      "kameletPropertiesUrl" : "?consumes=application/json&endpoint=/update&method=post&operationName=account&produces=application/json&requestmethod=POST"
+    }, {
+      "name" : "sql",
+      "nodeId" : "sql-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "sql",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "batch" : false,
+        "camelGroup" : "component",
+        "dataSource" : "#dataSource",
+        "name" : "sql",
+        "outputHeader" : "headerName",
+        "query" : "select * from table where id=:#${exchangeProperty.myId} order by name",
+        "setOutputHeader" : false,
+        "toDynamicEndpoint" : false,
+        "transacted" : false,
+        "url" : "",
+        "useMessageBodyForSql" : true
+      },
+      "_type" : "sql",
+      "kameletPropertiesUrl" : "?batch=false&dataSource=#dataSource&outputHeader=headerName&query=select * from table where id=:#${exchangeProperty.myId} order by name&setOutputHeader=false&transacted=false&useMessageBodyForSql=true"
+    }, {
+      "name" : "process",
+      "nodeId" : "process-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "process",
+        "active" : true,
+        "camelGroup" : "transform",
+        "code" : "/*\n * Provide own codes to consume or translate the message exchanges.\n * @param Exchange exchange\n * exchange.getIn().setHeader(\"date\", new Date())\n */",
+        "import" : "// import org.apache.camel.Message",
+        "name" : "process",
+        "url" : ""
+      },
+      "_type" : "process",
+      "kameletPropertiesUrl" : "?code=/*\n * Provide own codes to consume or translate the message exchanges.\n * @param Exchange exchange\n * exchange.getIn().setHeader(\"date\", new Date())\n */&import=// import org.apache.camel.Message"
+    }, {
+      "name" : "dslProcessor",
+      "nodeId" : "dslProcessor-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "dslProcessor",
+        "active" : true,
+        "camelGroup" : "core",
+        "dsl" : "from('direct://dsl-processor')",
+        "name" : "dslProcessor",
+        "url" : ""
+      },
+      "_type" : "dslProcessor",
+      "kameletPropertiesUrl" : "?dsl=from('direct://dsl-processor')"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-3",
+    "enabled" : true,
+    "routeId" : 3,
+    "route" : [ {
+      "name" : "timer",
+      "nodeId" : "timer-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "timer",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "daemon" : true,
+        "delay" : "1000",
+        "fixedRate" : false,
+        "name" : "timer",
+        "period" : "1000",
+        "repeatCount" : "0",
+        "setScheduleTime" : false,
+        "time" : "2021-12-31 00:00:00",
+        "timerName" : "timer",
+        "url" : ""
+      },
+      "_type" : "timer",
+      "kameletPropertiesUrl" : "?daemon=true&delay=1000&fixedRate=false&period=1000&repeatCount=0&setScheduleTime=false&time=2021-12-31 00:00:00&timerName=timer"
+    } ]
+  }, {
+    "id" : null,
+    "camelRouteId" : "route-4",
+    "enabled" : true,
+    "routeId" : 4,
+    "route" : [ {
+      "name" : "ftp",
+      "nodeId" : "ftp-00-id",
+      "description" : "",
+      "properties" : {
+        "_type" : "ftp",
+        "active" : true,
+        "advancedParameters" : [ ],
+        "camelGroup" : "component",
+        "directoryName" : "home/root",
+        "host" : "localhost",
+        "name" : "ftp",
+        "password" : "root",
+        "port" : "21",
+        "scheme" : "ftp",
+        "toDynamicEndpoint" : false,
+        "url" : "",
+        "username" : "root"
+      },
+      "_type" : "ftp",
+      "kameletPropertiesUrl" : "?directoryName=home/root&host=localhost&password=root&port=21&username=root"
+    } ]
+  } ],
+  "traits" : [ ],
+  "id" : "1060df3b-f332-4a4d-81ba-5ce8d423402e",
+  "name" : "test787",
+  "description" : "",
+  "createdAt" : "2024-01-09T15:39:18.712224125",
+  "updatedAt" : "2024-01-09T15:39:18.712224597",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}

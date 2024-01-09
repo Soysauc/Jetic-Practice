@@ -1,0 +1,14 @@
+{
+  "type" : "MAPPING",
+  "properties" : {
+    "filename" : "cloud-mapping.adm",
+    "mappingId" : "1370522809"
+  },
+  "id" : "c7106a02-35c4-45f4-a1f0-8ddaea3efc21",
+  "name" : "mapping-resource-f9f4dc96",
+  "description" : "Mapping resource from json to xml",
+  "createdAt" : "2024-01-09T15:38:44.479027107",
+  "updatedAt" : "2024-01-09T15:38:44.479027933",
+  "createdBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d",
+  "updatedBy" : "32363497-2d51-4e26-96c9-4ab99b9c2d2d"
+}
